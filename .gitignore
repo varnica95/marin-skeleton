@@ -1,0 +1,7 @@
+# DIRECTORIES
+.idea
+vendor
+
+# FILES
+.env.local
+.php-cs-fixer.cache

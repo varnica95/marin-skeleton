@@ -1,0 +1,13 @@
+
+parameters:
+  excludes_analyse:
+    - %rootDir%/../../../vendor/
+    - %rootDir%/../../../app/Helper/Reflection.php
+  level: max
+  paths:
+    - %rootDir%/../../../src
+    - %rootDir%/../../../core
+
+  inferPrivatePropertyTypeFromConstructor: true
+  checkMissingIterableValueType: false
+  checkGenericClassInNonGenericObjectType: false
