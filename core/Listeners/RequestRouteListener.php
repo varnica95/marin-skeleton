@@ -7,7 +7,7 @@ use Core\Helpers\Regex;
 use Core\Http\Route;
 use Core\Services\EventDispatcher\EventInterface;
 
-readonly class FindCurrentRouteListener
+readonly class RequestRouteListener
 {
     /**
      * @param RequestEvent $event

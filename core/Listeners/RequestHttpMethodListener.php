@@ -5,7 +5,7 @@ namespace Core\Listeners;
 use Core\Events\RequestEvent;
 use Core\Services\EventDispatcher\EventInterface;
 
-readonly class CheckCurrentMethodListener
+readonly class RequestHttpMethodListener
 {
     /**
      * @param RequestEvent $event

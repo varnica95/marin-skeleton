@@ -3,15 +3,15 @@
 namespace Core\Events;
 
 use Core\Http\Request;
-use Core\Listeners\CheckCurrentMethodListener;
-use Core\Listeners\FindCurrentRouteListener;
+use Core\Listeners\RequestHttpMethodListener;
+use Core\Listeners\RequestRouteListener;
 use Core\Services\EventDispatcher\EventInterface;
 
 class RequestEvent implements EventInterface
 {
     public array $listeners = [
-        FindCurrentRouteListener::class,
-        CheckCurrentMethodListener::class,
+        RequestRouteListener::class,
+        RequestHttpMethodListener::class,
     ];
 
     public function __construct(public Request $request)
