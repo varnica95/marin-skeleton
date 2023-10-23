@@ -5,6 +5,7 @@ namespace Core\Listeners;
 use Core\Events\RequestEvent;
 use Core\Helpers\Regex;
 use Core\Http\Route;
+use Core\Providers\AppProvider;
 use Core\Services\EventDispatcher\EventInterface;
 
 readonly class RequestRouteListener
@@ -28,7 +29,7 @@ readonly class RequestRouteListener
             $route = new Route();
             $route->setUri($uri);
             $route->setMethods($data['methods'] ?? ['GET']);
-            $route->setMiddlewares($data['middlewares'] ?? []);
+            $route->setMiddlewares([...$data['middlewares'], ...AppProvider::$middlewares]);
             $route->setHandler($data['handler']);
             $route->setVariables($variables);
 
