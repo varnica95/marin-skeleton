@@ -8,6 +8,10 @@ class AppProvider implements ProviderInterface
         // add providers here
     ];
 
+    public static array $middlewares = [
+        // add middlewares here
+    ];
+
     public function boot(): void
     {
     }

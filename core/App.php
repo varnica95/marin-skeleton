@@ -5,7 +5,6 @@ namespace Core;
 use Core\Events\RequestEvent;
 use Core\Http\Request;
 use Core\Providers\AppProvider;
-use Core\Providers\ProviderInterface;
 use Core\Services\EventDispatcher\Dispatcher;
 
 readonly class App
@@ -28,9 +27,7 @@ readonly class App
     private function bootProviders(): void
     {
         foreach ([AppProvider::class, ...AppProvider::$providers] as $provider) {
-            /** @var ProviderInterface $object */
-            $object = $this->container->inject($provider);
-            $object->boot();
+            tap($this->container->inject($provider), fn ($object) => $object->boot());
         }
     }
 
