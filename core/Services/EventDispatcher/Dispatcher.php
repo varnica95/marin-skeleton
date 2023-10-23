@@ -12,7 +12,7 @@ class Dispatcher
 
     public function addListeners(string $event, array $listeners): void
     {
-        $this->listeners[$event] = array_merge($this->listeners[$event], $listeners);
+        $this->listeners[$event] = array_merge($this->listeners[$event] ?? [], $listeners);
     }
 
     public function dispatch(EventInterface $event): EventInterface

@@ -2,7 +2,9 @@
 
 namespace Core;
 
-use Core\Services\Contracts\ProviderInterface;
+use Core\Events\RequestEvent;
+use Core\Http\Request;
+use Core\Providers\ProviderInterface;
 use Core\Services\EventDispatcher\Dispatcher;
 
 readonly class App
@@ -31,9 +33,11 @@ readonly class App
         }
     }
 
-    public function run(): void
+    public function handle(Request $request): void
     {
         /** @var Dispatcher $dispatcher */
         $dispatcher = $this->getService(Dispatcher::class);
+
+        $dispatcher->dispatch(new RequestEvent($request));
     }
 }
