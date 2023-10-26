@@ -2,6 +2,7 @@
 
 namespace Core;
 
+use Core\Events\ControllerEvent;
 use Core\Events\RequestEvent;
 use Core\Http\Request;
 use Core\Providers\AppProvider;
@@ -36,6 +37,18 @@ readonly class App
         /** @var Dispatcher $dispatcher */
         $dispatcher = $this->getService(Dispatcher::class);
 
+        // dispatch request
         $dispatcher->dispatch(new RequestEvent($request));
+
+        // dispatch controller
+        $controllerEvent = new ControllerEvent($request);
+        $dispatcher->dispatch($controllerEvent);
+
+        // run the controller
+        $controller = $controllerEvent->getController();
+        $method = $controllerEvent->getMethod();
+        $arguments = $controllerEvent->getArguments();
+
+        $response = $controller->$method(...$arguments);
     }
 }
